@@ -1,10 +1,4 @@
-import { promises as fs } from 'fs';
-
-async function load(): Promise<string[]> {
-    const f = await fs.readFile(__dirname + '/day2.input.txt');
-    const lines = f.toString().split('\n');
-    return lines;
-}
+import load from '../load';
 
 function day2(lines: string[], aiming = false) {
     let pos = 0;
@@ -38,12 +32,12 @@ describe('day 2', () => {
     });
 
     test('puzzle', async () => {
-        const lines = await load();
+        const lines = await load('./02/day2.input.txt');
         expect(day2(lines)).toEqual(2019945);
     });
 
     test('puzzle pt 2', async () => {
-        const lines = await load();
+        const lines = await load('./02/day2.input.txt');
         expect(day2(lines, true)).toEqual(1599311480);
     });
 });

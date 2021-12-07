@@ -1,11 +1,4 @@
-import { assert } from 'console';
-import { promises as fs } from 'fs';
-
-async function load(sample = false): Promise<string[]> {
-    const f = await fs.readFile(__dirname + (sample ? '/sample.txt' : '/input.txt'));
-    const lines = f.toString().split('\n');
-    return lines;
-}
+import load from '../load';
 
 function parseCards(lines: string[]) {
     let cards = [];
@@ -80,17 +73,16 @@ function bingo(lines: string[]) {
 }
 
 test('experiment', async () => {
-    const input = await load(true);
+    const input = await load('./04/sample.txt');
     const game = bingo(input);
     const o = game[0];
-    // expect(game).toBe(null)
     expect(o.call).toEqual(24);
     expect(o.unmarked).toEqual(188);
     expect(o.product).toEqual(4512);
 });
 
 test('puzzle pt1', async () => {
-    const input = await load(false);
+    const input = await load('./04/input.txt');
     const game = bingo(input);
     const o = game[0];
     expect(o.call).toEqual(54);
@@ -99,7 +91,7 @@ test('puzzle pt1', async () => {
 });
 
 test('puzzle pt2', async () => {
-    const input = await load(false);
+    const input = await load('./04/input.txt');
     const game = bingo(input);
     const o = game[game.length - 1];
     expect(o.call).toEqual(42);

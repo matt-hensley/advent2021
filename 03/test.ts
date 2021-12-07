@@ -1,10 +1,4 @@
-import { promises as fs } from 'fs';
-
-async function load(sample = false): Promise<string[]> {
-    const f = await fs.readFile(__dirname + (sample ? '/sample.txt' : '/input.txt'));
-    const lines = f.toString().split('\n');
-    return lines;
-}
+import load from '../load';
 
 function frequency(lines: string[], pos: number) {
     let zero = 0;
@@ -59,7 +53,7 @@ function pt(lines: string[]) {
 }
 
 test('experiment', async () => {
-    const input = await load(true);
+    const input = await load('./03/sample.txt');
     expect(pt(input).power).toEqual(198);
     expect(pt(input).co2).toEqual(10);
     expect(pt(input).o2).toEqual(23);
@@ -67,7 +61,7 @@ test('experiment', async () => {
 });
 
 test('puzzle', async () => {
-    const input = await load(false);
+    const input = await load('./03/input.txt');
     expect(pt(input).power).toEqual(2967914);
     expect(pt(input).lifeSupport).toEqual(7041258);
 });
