@@ -1,5 +1,5 @@
 import load from '../load';
-import range from '../range';
+import { range } from '../util';
 
 function bruteforce(input: string[], days: number) {
     const init = input[0].split(',').map(x => parseInt(x, 10));
