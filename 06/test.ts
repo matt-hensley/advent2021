@@ -1,10 +1,11 @@
 import load from '../load';
+import range from '../range';
 
 function bruteforce(input: string[], days: number) {
     const init = input[0].split(',').map(x => parseInt(x, 10));
     let state = init;
 
-    for (const day of Array(days).keys()) {
+    for (const day of range(0, days)) {
         let born = [];
         state = state.map(fish => {
             if (fish === 0) {
@@ -21,13 +22,14 @@ function bruteforce(input: string[], days: number) {
 }
 
 function solution(input: string[], days: number) {
-    let buckets = new Array(9).fill(0);
+    let buckets = range(0, 9).fill(0);
 
     for (let x of input[0].split(',')) {
-        buckets[x] += 1;
+        const num = parseInt(x, 10);
+        buckets[num] += 1;
     }
 
-    for (const day of Array(days).keys()) {
+    for (const day of range(0, days)) {
         const born = buckets.shift();
         buckets[6] += born;
         buckets = [...buckets, born];
