@@ -1,5 +1,5 @@
 import load from '../load';
-import { parseIntCsv, range } from '../util';
+import { parseIntCsv, range, sum } from '../util';
 
 function bruteforce(input: string[], days: number) {
     const init = parseIntCsv(input[0], 10);
@@ -34,9 +34,7 @@ function solution(input: string[], days: number) {
         buckets = [...buckets, born];
     }
 
-    return buckets.reduce((acc, prev) => {
-        return acc + prev;
-    }, 0);
+    return sum(buckets);
 }
 
 describe('day 6', () => {

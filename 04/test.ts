@@ -1,5 +1,5 @@
 import load from '../load';
-import { parseIntCsv } from '../util';
+import { parseIntCsv, sum } from '../util';
 
 function parseCards(lines: string[]) {
     let cards = [];
@@ -36,10 +36,6 @@ function check(card: number[]) {
     if (won) return true;
 
     return false;
-}
-
-function sum(card: number[]) {
-    return card.reduce((acc, prev) => acc + prev, 0);
 }
 
 function bingo(lines: string[]) {

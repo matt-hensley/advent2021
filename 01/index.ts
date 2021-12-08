@@ -1,4 +1,5 @@
 import { promises as fs } from 'fs';
+import { sum } from '../util';
 
 async function day1(measure = 1) {
     const f = await fs.readFile('./day1.txt');
@@ -7,9 +8,8 @@ async function day1(measure = 1) {
         if (measure > index) return acc;
         // if (measure + index > inputs.length) return acc;
 
-        const sum = inputs.slice(index - measure, index).reduce((acc, prev) => acc + prev, 0);
-        const left = inputs.slice(index - measure, index).reduce((acc, prev) => acc + prev, 0);
-        const right = inputs.slice(index - measure + 1, index + 1).reduce((acc, prev) => acc + prev, 0);
+        const left = sum(inputs.slice(index - measure, index));
+        const right = sum(inputs.slice(index - measure + 1, index + 1));
         console.log(left, right)
 
         if (left < right) return acc + 1;
