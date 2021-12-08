@@ -1,8 +1,8 @@
 import load from '../load';
-import { range } from '../util';
+import { parseIntCsv, range } from '../util';
 
 function bruteforce(input: string[], days: number) {
-    const init = input[0].split(',').map(x => parseInt(x, 10));
+    const init = parseIntCsv(input[0], 10);
     let state = init;
 
     for (const day of range(0, days)) {
@@ -24,8 +24,7 @@ function bruteforce(input: string[], days: number) {
 function solution(input: string[], days: number) {
     let buckets = range(0, 9).fill(0);
 
-    for (let x of input[0].split(',')) {
-        const num = parseInt(x, 10);
+    for (let num of parseIntCsv(input[0], 10)) {
         buckets[num] += 1;
     }
 
