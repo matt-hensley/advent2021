@@ -1,4 +1,3 @@
-import { mainModule } from 'process';
 import load from '../load';
 import { sum } from '../util';
 
